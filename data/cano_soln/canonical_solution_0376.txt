@@ -1,0 +1,5 @@
+    words = re.split(r'\W+', text.lower())
+    words = [word for word in words if word not in STOPWORDS and word != '']
+    word_freq = dict(Counter(words))
+
+    return word_freq

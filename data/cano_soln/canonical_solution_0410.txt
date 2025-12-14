@@ -1,0 +1,19 @@
+    excel_file = os.path.join(excel_directory, file_name)
+    if not os.path.exists(excel_file):
+        raise FileNotFoundError(f"The file {excel_file} does not exist.")
+
+    df = pd.read_excel(excel_file, engine='openpyxl')
+
+    if column_name not in df.columns:
+        raise ValueError(f"Column {column_name} does not exist in the DataFrame.")
+
+    try:
+        df[column_name] = pd.to_datetime(df[column_name])
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+    except ValueError as e:
+        raise ValueError("Date format is incorrect. Please use 'yyyy-mm-dd' format.") from e
+
+    filtered_df = df[(df[column_name] >= start_date) & (df[column_name] <= end_date)]
+
+    return filtered_df

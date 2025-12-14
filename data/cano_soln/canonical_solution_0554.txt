@@ -1,0 +1,13 @@
+    sentence_length = np.random.randint(MIN_WORDS, MAX_WORDS + 1)
+    first_half = [random.choice(WORDS_POOL) for _ in range(sentence_length // 2)]
+
+    # For odd-length sentences, add a middle word
+    if sentence_length % 2 == 1:
+        middle_word = [random.choice(WORDS_POOL)]
+        second_half = first_half[::-1]
+        sentence = first_half + middle_word + second_half
+    else:
+        second_half = first_half[::-1]
+        sentence = first_half + second_half
+
+    return ' '.join(sentence)

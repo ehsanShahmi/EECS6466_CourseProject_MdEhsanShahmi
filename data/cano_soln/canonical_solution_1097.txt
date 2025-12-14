@@ -1,0 +1,16 @@
+    # Constants
+    PUNCTUATION = set(punctuation)
+
+    # Remove URLs
+    text = re.sub('http[s]?://\S+', '', text)
+
+    # Remove punctuation
+    text = re.sub('[{}]'.format(re.escape(''.join(PUNCTUATION))), '', text)
+
+    # Tokenize the text
+    words = text.split()
+
+    # Remove stopwords
+    cleaned_words = [word for word in words if word.lower() not in PREDEFINED_STOPWORDS]
+
+    return ' '.join(cleaned_words)

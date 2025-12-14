@@ -1,0 +1,10 @@
+    pattern = r"Name: (.*?), Email: (.*?), Age: (.*?), Country: (.*?)($|\n)"
+    matches = re.findall(pattern, text)
+    data = []
+    for match in matches:
+        data.append(match[:-1])
+    df = pd.DataFrame(data, columns=COLUMN_NAMES)
+    df["Age"] = df["Age"].astype(int)
+    sns.histplot(data=df, x="Age")
+    plt.show()
+    return df

@@ -1,0 +1,9 @@
+    if not l:
+        return pd.DataFrame()
+
+    shuffle(l)
+    df = pd.DataFrame([l for _ in range(n_groups)])
+    # Ensure rolling does not aggregate rows into lists
+    df = df.apply(lambda row: np.roll(row, -n_groups), axis=1, result_type='expand')
+
+    return df

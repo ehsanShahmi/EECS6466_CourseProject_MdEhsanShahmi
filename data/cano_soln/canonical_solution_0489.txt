@@ -1,0 +1,19 @@
+    random.seed(seed)
+
+    USERS = ["user1", "user2", "user3", "user4", "user5"]
+    ACTIVITIES = ["login", "logout", "browse", "search", "purchase"]
+
+    start_time = datetime.fromtimestamp(epoch_milliseconds / 1000.0)
+    end_time = datetime.now()
+    if start_time >= end_time:
+        raise ValueError("Start time must be before current system time")
+
+    logs = []
+    current_time = start_time
+    while current_time <= end_time:
+        user = random.choice(USERS)
+        activity = random.choice(ACTIVITIES)
+        logs.append([user, activity, current_time])
+        current_time += timedelta(seconds=random.randint(1, 10))
+    log_df = pd.DataFrame(logs, columns=["User", "Activity", "Time"])
+    return log_df

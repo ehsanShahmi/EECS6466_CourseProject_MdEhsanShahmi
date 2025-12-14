@@ -1,0 +1,13 @@
+
+    results = []
+
+    def delay():
+        time.sleep(delay_time)
+        results.append(f'Delay in thread {threading.current_thread().name} completed')
+
+    for i in range(num_threads):
+        t = threading.Thread(target=delay, name=str(i))
+        t.start()
+        t.join()  # Ensure that the thread completes before moving to the next
+
+    return results

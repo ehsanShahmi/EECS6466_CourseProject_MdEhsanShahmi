@@ -1,0 +1,4 @@
+    df = pd.read_csv(file_path, dtype=float)
+    ax = df[columns].plot()
+    croot = np.cbrt(df[columns])
+    return df, ax, croot

@@ -1,0 +1,10 @@
+    lines = input_string.split('\n')
+    file_paths = []
+    for line in lines:
+        line = re.sub('['+string.punctuation+']', '', line)
+        filename = str(random.randint(10000, 99999)) + '.txt'
+        filepath = os.path.join(directory, filename)
+        file_paths.append(filepath)
+        with open(filepath, 'w') as file:
+            file.write(line)
+    return file_paths

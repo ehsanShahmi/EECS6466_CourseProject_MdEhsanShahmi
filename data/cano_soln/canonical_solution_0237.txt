@@ -1,0 +1,20 @@
+    items, x_values, y_values, z_values = zip(*data)
+    coordinates = np.array(list(zip(x_values, y_values, z_values)))
+
+    pca = PCA(n_components=2)
+    coordinates_2d = pca.fit_transform(coordinates)
+
+    # Initialize a fresh plot
+    plt.figure()
+    fig, ax = plt.subplots()
+    ax.scatter(*zip(*coordinates_2d))
+
+    if save_plot:
+        if plot_path:
+            plt.savefig(plot_path)
+            plt.close(fig)
+            return coordinates_2d, ax
+        else:
+            raise ValueError("plot_path is required if save_plot is True")
+    else:
+        return coordinates_2d

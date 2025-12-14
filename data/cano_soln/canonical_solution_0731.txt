@@ -1,0 +1,9 @@
+    with open(FILE_NAME, 'wb') as file:
+        pickle.dump((data, target), file)
+    
+    with open(FILE_NAME, 'rb') as file:
+        loaded_data, loaded_target = pickle.load(file)
+
+    os.remove(FILE_NAME)
+
+    return loaded_data, loaded_target

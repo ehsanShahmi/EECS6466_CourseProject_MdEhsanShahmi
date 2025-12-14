@@ -1,0 +1,10 @@
+    sys.path.append(path_to_append)
+
+    with open(json_file, 'r+') as file:
+        json_data = json.load(file)
+        json_data['last_updated'] = str(datetime.now())
+        file.seek(0)
+        json.dump(json_data, file, indent=4)
+        file.truncate()
+
+    return json_data

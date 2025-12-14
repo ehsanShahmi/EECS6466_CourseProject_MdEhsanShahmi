@@ -1,0 +1,7 @@
+    combinations = list(itertools.combinations(elements, subset_size))
+    sums = [sum(combination) for combination in combinations]
+    return {
+        'mean': statistics.mean(sums),
+        'median': statistics.median(sums),
+        'mode': statistics.mode(sums)
+    }

@@ -1,0 +1,6 @@
+    random.seed(seed)
+    random_string = ''.join(random.choice(string.ascii_letters) for _ in range(length))
+
+    char_freq = collections.Counter(random_string)
+
+    return dict(char_freq)

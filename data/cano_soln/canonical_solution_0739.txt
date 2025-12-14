@@ -1,0 +1,5 @@
+    if hex_key is None:
+        hex_key = random.choice(KEYS)
+    float_num = struct.unpack('!f', bytes.fromhex(hex_key))[0]
+    rounded_float = round(float_num, 2)
+    return rounded_float

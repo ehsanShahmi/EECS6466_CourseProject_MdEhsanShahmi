@@ -1,0 +1,16 @@
+    hex_str_cleaned = hex_str.replace('\\x', '')
+    try:
+        bytes_data = binascii.unhexlify(hex_str_cleaned)
+    except binascii.Error:
+        raise ValueError("Invalid hex string")
+
+    byte_values, byte_counts = np.unique(np.frombuffer(bytes_data, dtype=np.uint8), return_counts=True)
+    df = pd.DataFrame({'Byte Value': byte_values, 'Frequency': byte_counts})
+
+    fig, ax = plt.subplots()
+    ax.bar(df['Byte Value'], df['Frequency'])
+    ax.set_xlabel('Byte Value')
+    ax.set_ylabel('Frequency')
+    ax.set_title('Frequency of Bytes in Hex String')
+
+    return df, ax

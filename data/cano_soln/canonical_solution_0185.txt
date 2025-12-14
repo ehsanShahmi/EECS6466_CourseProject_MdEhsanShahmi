@@ -1,0 +1,19 @@
+    if 'Lon' not in dic or 'Lat' not in dic or not isinstance(dic['Lon'], tuple) or not isinstance(dic['Lat'], tuple):
+        raise ValueError("Dictionary must contain 'Lon' and 'Lat' keys with tuple values.")
+
+    lon_min, lon_max = dic['Lon']
+    lat_min, lat_max = dic['Lat']
+
+    data = {'City': [], 'Longitude': [], 'Latitude': []}
+    for city in cities:
+        data['City'].append(city)
+        data['Longitude'].append(np.random.uniform(lon_min, lon_max))
+        data['Latitude'].append(np.random.uniform(lat_min, lat_max))
+
+    df = pd.DataFrame(data)
+
+    m = folium.Map(location=[0, 0], zoom_start=2)
+    for _, row in df.iterrows():
+        folium.Marker([row['Latitude'], row['Longitude']], popup=row['City']).add_to(m)
+
+    return m, df

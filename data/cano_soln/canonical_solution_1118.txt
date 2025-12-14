@@ -1,0 +1,10 @@
+    response = requests.get(csv_url)
+    csv_data = csv.reader(StringIO(response.text))
+
+    headers = next(csv_data)
+    json_data = [dict(zip(headers, row)) for row in csv_data]
+
+    with open(json_file_path, 'w') as json_file:
+        json.dump(json_data, json_file)
+
+    return json_file_path

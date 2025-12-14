@@ -1,0 +1,12 @@
+    with open(file_name, 'w', newline='') as file:
+        writer = csv.writer(file)
+        writer.writerow(['Time'] + DATA)
+        
+        for hour in range(24):
+            row = [f'{hour}:00']
+            for data_type in DATA:
+                min_val, max_val = RANGE[data_type]
+                row.append(random.uniform(min_val, max_val))
+            writer.writerow(row)
+
+    return file_name

@@ -1,0 +1,3 @@
+    combinations = list(itertools.combinations(elements, subset_size))
+    sums = [sum(combination) for combination in combinations]
+    return collections.Counter(sums)

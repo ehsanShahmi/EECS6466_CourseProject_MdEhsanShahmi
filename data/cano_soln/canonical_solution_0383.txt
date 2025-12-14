@@ -1,0 +1,7 @@
+    blob = TextBlob(text.lower())
+    words_freq = Counter([' '.join(list(span)) for span in blob.ngrams(n=n)])  # Get n-grams and count frequency
+    words_freq_filtered = words_freq.most_common(top_k)  # Get top k n-grams
+    top_df = pd.DataFrame(words_freq_filtered, columns=['n-gram', 'Frequency'])
+    plt.figure()
+
+    return sns.barplot(x='n-gram', y='Frequency', data=top_df)

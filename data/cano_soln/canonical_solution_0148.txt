@@ -1,0 +1,3 @@
+    le = LabelEncoder()
+    df[column_name] = le.fit_transform(df[column_name])
+    return df

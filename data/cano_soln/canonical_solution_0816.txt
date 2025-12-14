@@ -1,0 +1,11 @@
+
+    hand = []
+    for _ in range(5):
+        rank = random.choice(HAND_RANKS)
+        suit = random.choice(SUITS)
+        card = f'{rank}{suit}'
+        hand.append(card)
+
+    rank_counts = Counter([card[:-1] for card in hand])
+
+    return hand, rank_counts

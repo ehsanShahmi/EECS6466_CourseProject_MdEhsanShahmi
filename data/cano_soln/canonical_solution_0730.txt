@@ -1,0 +1,9 @@
+    with open(FILE_NAME, 'wb') as file:
+        pickle.dump(dt, file)
+    
+    with open(FILE_NAME, 'rb') as file:
+        loaded_dt = pickle.load(file)
+
+    os.remove(FILE_NAME)
+
+    return loaded_dt

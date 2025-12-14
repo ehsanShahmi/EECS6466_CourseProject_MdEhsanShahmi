@@ -1,0 +1,5 @@
+    np.random.seed(seed)
+    matrix = np.random.rand(rows, columns)
+    U, s, Vh = svd(matrix)
+
+    return U, s, Vh

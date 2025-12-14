@@ -1,0 +1,10 @@
+
+    if random_seed is not None:
+        np.random.seed(random_seed)
+    data = np.random.randn(num_samples, 1)*k + d
+    scaler = StandardScaler()
+    scaled_data = scaler.fit_transform(data)
+
+    mse = mean_squared_error(data, scaled_data)
+
+    return mse

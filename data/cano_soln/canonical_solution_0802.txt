@@ -1,0 +1,11 @@
+    np.random.seed(seed)  # Ensure reproducible results
+    
+    if dimension <= 0:
+        raise ValueError("The dimension must be a positive integer")
+    
+    matrix = np.random.randint(1, 101, size=(dimension, dimension))
+    flat_list = matrix.flatten().tolist()
+    
+    combinations = list(itertools.combinations(flat_list, 2))
+    
+    return matrix, flat_list

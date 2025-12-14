@@ -1,0 +1,4 @@
+    flattened = np.array(L).flatten()
+    iqr_value = iqr(flattened)
+    
+    return iqr_value

@@ -1,0 +1,12 @@
+
+    seed(random_seed)  # Setting the seed for reproducibility
+    product_ratings = []
+
+    for product in products:
+        rating = choices(ratings, weights, k=1)[0]
+        product_ratings.append([product, rating])
+
+    df = pd.DataFrame(product_ratings, columns=["Product", "Rating"])
+    df.sort_values("Rating", ascending=False, inplace=True)
+
+    return df

@@ -1,0 +1,11 @@
+    if top_k < 0:
+        raise ValueError('top_k must be a positive integer.')
+    elif top_k >= len(text_dict):
+        top_k = len(text_dict)
+
+    frequencies = [text_dict.get(word, 0) for word in word_keys]
+    freq_dict = Counter(text_dict)
+    top_k_words = freq_dict.most_common(top_k)
+    word_series = pd.Series(frequencies, index=word_keys)
+    ax = word_series.plot(kind='bar')
+    return ax, dict(top_k_words)

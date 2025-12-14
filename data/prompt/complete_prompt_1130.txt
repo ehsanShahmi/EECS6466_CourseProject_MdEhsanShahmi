@@ -1,0 +1,26 @@
+import os
+import hashlib
+import json
+from pathlib import Path
+
+def task_func(directory: str) -> str:
+    """
+    Create SHA256 hashes for all files in the specified directory, including files in subdirectories, 
+    and save these hashes in a JSON file named 'hashes.json' in the given directory.
+
+    Parameters:
+    - directory (str): The path to the directory containing files to be hashed.
+    
+    Returns:
+    str: The absolute path of the JSON file ('hashes.json') containing the hashes.
+    
+    Requirements:
+    - os
+    - hashlib
+    - json
+    - pathlib.Path
+
+    Example:
+    >>> json_file = task_func("/path/to/directory")
+    >>> print(f"Hashes saved at: {json_file}")
+    """

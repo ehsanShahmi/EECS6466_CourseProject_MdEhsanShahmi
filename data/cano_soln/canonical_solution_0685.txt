@@ -1,0 +1,2 @@
+    merged_list = list(chain.from_iterable(list_of_lists))
+    return Counter(merged_list)

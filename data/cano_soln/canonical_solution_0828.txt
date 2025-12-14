@@ -1,0 +1,16 @@
+    # Ensure the destination directory exists
+    try:
+        os.makedirs(dest_dir, exist_ok=True)  # Simplified directory creation
+    except OSError as e:
+        # Reraise the exception if it's not related to existing directory
+        if e.errno != errno.EEXIST:
+            raise
+
+    # Copy the file
+    dest = shutil.copy(filename, dest_dir)
+
+    # Erase the original file content by opening in write mode and closing it
+    with open(filename, 'w') as original_file:
+        original_file.truncate(0)
+
+    return os.path.abspath(dest)

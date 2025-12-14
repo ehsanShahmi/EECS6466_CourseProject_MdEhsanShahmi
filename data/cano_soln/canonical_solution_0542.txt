@@ -1,0 +1,11 @@
+
+    random.seed(seed)
+    hex_key = random.choice(hex_keys)
+
+    try:
+        float_num = struct.unpack('!f', bytes.fromhex(hex_key))[0]
+    except ValueError as e:
+        raise ValueError("Invalid hexadecimal string in hex_keys.") from e
+
+    hashed_float = hashlib.md5(str(float_num).encode()).hexdigest()
+    return hashed_float

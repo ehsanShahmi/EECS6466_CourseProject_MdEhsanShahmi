@@ -1,0 +1,5 @@
+    flattened = list(chain.from_iterable(L))
+    mean = np.mean(flattened)
+    variance = np.var(flattened)
+    
+    return {'mean': mean, 'variance': variance}

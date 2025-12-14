@@ -1,0 +1,2 @@
+    df = pd.DataFrame([(math.sin(n) for n in t) for t in tuples_list])
+    return df

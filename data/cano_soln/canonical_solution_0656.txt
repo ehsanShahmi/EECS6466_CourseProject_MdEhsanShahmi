@@ -1,0 +1,4 @@
+    text = ALPHANUMERIC.sub(' ', text).lower()
+    text = text.translate(str.maketrans('', '', PUNCTUATIONS))
+    sentiment_scores = sia.polarity_scores(text)
+    return sentiment_scores

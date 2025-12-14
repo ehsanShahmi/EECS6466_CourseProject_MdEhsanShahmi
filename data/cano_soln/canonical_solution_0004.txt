@@ -1,0 +1,2 @@
+    count_dict = Counter(itertools.chain.from_iterable(d.values()))
+    return dict(count_dict)

@@ -1,0 +1,3 @@
+    binary_float = struct.pack('!f', int(hex_string, 16))
+    compressed_data = zlib.compress(binary_float)
+    return compressed_data

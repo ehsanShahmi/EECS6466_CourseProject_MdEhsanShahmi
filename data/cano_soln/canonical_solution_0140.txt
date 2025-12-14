@@ -1,0 +1,11 @@
+    if not isinstance(df, pd.DataFrame):
+        raise ValueError("The input df must be a pandas DataFrame.")
+    if not isinstance(cols, list) or not all(isinstance(col, str) for col in cols):
+        raise ValueError("cols must be a list of column names.")
+    if not all(col in df.columns for col in cols):
+        raise ValueError("All columns in cols must exist in the dataframe.")
+
+    scaler = StandardScaler()
+    df[cols] = scaler.fit_transform(df[cols])
+
+    return df

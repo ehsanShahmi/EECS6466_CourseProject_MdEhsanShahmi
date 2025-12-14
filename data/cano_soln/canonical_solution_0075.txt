@@ -1,0 +1,24 @@
+    if not isinstance(df, pd.DataFrame):
+        raise TypeError("Input must be a pandas DataFrame")
+    if not df.empty:
+        raise ValueError("Input DataFrame must be empty")
+    if sales_lower_bound >= sales_upper_bound:
+        raise ValueError("sales_lower_bound must be less than sales_upper_bound")
+
+    if fruits is None:
+        fruits = ['Apple', 'Banana', 'Cherry', 'Date', 'Elderberry']
+    if days is None:
+        # Set days to range from January 1, 2024, to January 7, 2024
+        days = [datetime(2024, 1, 1) + timedelta(days=x) for x in range(7)]
+
+    if seed is not None:
+        np.random.seed(seed)
+
+    data = list(itertools.product(fruits, days))
+    sales_data = pd.DataFrame(data, columns=['Fruit', 'Day'])
+    sales_data['Sales'] = np.random.randint(sales_lower_bound, sales_upper_bound, size=len(data))
+
+    result_df = pd.concat([df, sales_data])
+    plot = sns.boxplot(x='Fruit', y='Sales', data=result_df)
+
+    return result_df, plot

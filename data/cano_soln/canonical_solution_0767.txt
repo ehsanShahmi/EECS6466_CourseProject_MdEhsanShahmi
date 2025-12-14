@@ -1,0 +1,3 @@
+    flat_list = [random.choice(LETTERS) for _ in list_of_lists]
+
+    return dict(Counter(flat_list))

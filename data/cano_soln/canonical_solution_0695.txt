@@ -1,0 +1,5 @@
+    data = np.array(tuples_list)
+    pca = PCA(n_components=n_components)
+    transformed_data = pca.fit_transform(data)
+
+    return transformed_data

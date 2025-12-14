@@ -1,0 +1,26 @@
+    np.random.seed(seed)
+
+    if period <= 0 or step < 1:
+        raise ValueError("Invalid input values")
+
+    COLUMNS = ["Timestamp", "Value"]
+
+    timestamps = np.arange(start_time, end_time, step)
+    df = pd.DataFrame(columns=COLUMNS)
+
+    if amplitude == 0:
+        values = [0] * len(timestamps)
+    else:
+        values = np.random.normal(size=len(timestamps))
+
+    data = []
+    for i, ts in enumerate(timestamps):
+        dt = datetime.utcfromtimestamp(ts / 1000).strftime("%Y-%m-%d %H:%M:%S.%f")
+        value = values[i] + amplitude * np.sin(2 * np.pi * ts / period)
+        data.append([dt, value])
+
+    df = pd.DataFrame(data, columns=COLUMNS)
+
+    ax = df.plot(x="Timestamp", y="Value", title="Time Series with Seasonality")
+    ax.set_ylabel("Value")
+    return ax

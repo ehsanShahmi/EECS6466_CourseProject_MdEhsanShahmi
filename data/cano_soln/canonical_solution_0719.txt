@@ -1,0 +1,9 @@
+    count = 0
+    # Pattern to match word boundaries and ignore case, handling punctuation
+    pattern = re.compile(r'\b' + re.escape(word) + r'\b', re.IGNORECASE)
+    for filename in glob.glob(os.path.join(directory, '*.*')):
+        with open(filename, 'r', encoding='utf-8') as f:
+            text = f.read()
+            if pattern.search(text):
+                count += 1
+    return count

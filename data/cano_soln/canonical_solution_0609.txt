@@ -1,0 +1,10 @@
+    COLUMNS = ['A', 'B', 'C', 'D', 'E']
+    df = df.set_index(list('ABCDE')).drop(tuples, errors='ignore').reset_index()
+    plots = []
+    possible_combinations = list(combinations(COLUMNS, 2))
+    for _ in range(min(n_plots, len(possible_combinations))):
+        selected_columns = sample(possible_combinations, 1)[0]
+        possible_combinations.remove(selected_columns)
+        ax = df.plot.scatter(x=selected_columns[0], y=selected_columns[1])
+        plots.append((selected_columns, ax))
+    return df, plots

@@ -1,0 +1,10 @@
+    # Convert the Unix timestamp to a UTC datetime object
+    datetime_utc = datetime.utcfromtimestamp(unix_timestamp).replace(tzinfo=pytz.utc)
+
+    # Convert the UTC datetime to the target timezone
+    datetime_in_target_timezone = datetime_utc.astimezone(pytz.timezone(target_timezone))
+
+    # Format the datetime object in the target timezone to the specified string format
+    formatted_datetime = datetime_in_target_timezone.strftime(DATE_FORMAT)
+
+    return formatted_datetime

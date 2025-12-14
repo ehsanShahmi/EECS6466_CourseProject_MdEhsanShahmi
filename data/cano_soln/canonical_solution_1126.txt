@@ -1,0 +1,4 @@
+    cleaned_str = re.sub('[^A-Za-z0-9]+', '', input_str)
+    hashed_str = hashlib.sha256(cleaned_str.encode()).hexdigest()
+
+    return hashed_str

@@ -1,0 +1,5 @@
+    df = pd.merge(df1, df2, on="id")
+    contingency_table = pd.crosstab(df[column1], df[column2])
+    heatmap = sns.heatmap(contingency_table)
+    chi2, p, dof, expected = chi2_contingency(contingency_table)
+    return p, heatmap

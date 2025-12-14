@@ -1,0 +1,14 @@
+
+    # Handle empty input
+    if all(text.strip() == "" for text in texts):
+        return [], []
+
+    # Remove URLs
+    cleaned_texts = [re.sub('http[s]?://\S+', '', text) for text in texts]
+
+    vectorizer = TfidfVectorizer()
+    tfidf_matrix = vectorizer.fit_transform(cleaned_texts)
+
+    # Convert the sparse matrix to a dense format, round the values, convert to tuples and return along with feature names
+    dense_matrix = [tuple(round(val, 8) for val in row) for row in tfidf_matrix.toarray().tolist()]
+    return dense_matrix, list(vectorizer.get_feature_names_out())

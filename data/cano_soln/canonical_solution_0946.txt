@@ -1,0 +1,7 @@
+    random.seed(seed)
+    if min_val == max_val:
+        matrix = np.full((rows, cols), min_val)
+    else:
+        matrix = np.array([[random.randrange(min_val, max_val) for j in range(cols)] for i in range(rows)])
+    df = pd.DataFrame(matrix)
+    return df

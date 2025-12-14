@@ -1,0 +1,11 @@
+    # Remove URLs
+    text = re.sub('http[s]?://\S+', '', text)
+    # Tokenize the text using regex (improved tokenization)
+    words = re.findall(r'\b\w+\b', text)
+    # Count the frequency of each word
+    word_freq = Counter(words)
+    result = Counter(words)
+    for i in word_freq:
+        if i not in PREDEFINED_STOPWORDS:
+            del result[i]
+    return list(result.items())

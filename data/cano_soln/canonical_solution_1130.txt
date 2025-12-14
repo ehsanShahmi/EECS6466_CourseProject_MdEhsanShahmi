@@ -1,0 +1,15 @@
+    hash_dict = {}
+    
+    for root, dirs, files in os.walk(directory):
+        for file in files:
+            file_path = Path(root) / file
+            with open(file_path, 'rb') as f:
+                bytes = f.read()  # read entire file as bytes
+                readable_hash = hashlib.sha256(bytes).hexdigest()
+                hash_dict[str(file_path)] = readable_hash
+                
+    # Save to JSON file
+    json_file = Path(directory) / 'hashes.json'
+    with open(json_file, 'w') as f:
+        json.dump(hash_dict, f)
+    return str(json_file)

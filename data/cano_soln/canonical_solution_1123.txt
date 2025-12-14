@@ -1,0 +1,14 @@
+    urls = re.findall(r'https://[^\s,]+', myString)
+    ssl_expiry_dates = {}
+
+    for url in urls:
+        try:
+            domain = urllib.parse.urlparse(url).netloc
+            context = ssl.create_default_context()
+            with socket.create_connection((domain, 443)) as sock:
+                with context.wrap_socket(sock, server_hostname=domain) as ssock:
+                    ssl_expiry_dates[domain] = ssock.getpeercert()['notAfter']
+        except ssl.SSLError:
+            continue  # Ignore SSL errors or log them if necessary
+
+    return ssl_expiry_dates

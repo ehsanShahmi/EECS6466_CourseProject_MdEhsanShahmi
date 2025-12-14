@@ -1,0 +1,4 @@
+
+
+    words = re.findall(r'\b\w+\b', sentence)
+    return dict(Counter(words))

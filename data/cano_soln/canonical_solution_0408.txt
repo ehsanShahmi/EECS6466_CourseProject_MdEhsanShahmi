@@ -1,0 +1,2 @@
+    with sqlite3.connect(db_file) as conn:
+        return pd.read_sql_query(query, conn)

@@ -1,0 +1,21 @@
+    # Extracting names from the text
+    names = re.findall(r'(.*?)(?:\[.*?\]|$)', text)
+    names = [name.strip() for name in names if name.strip()]  # Removing any empty or whitespace names
+
+    # Counting name frequencies
+    name_freqs = pd.Series(names).value_counts()
+    
+    # Creating a bar chart of name frequencies if there are names found
+    if not name_freqs.empty:
+        ax = name_freqs.plot(kind='bar', title="Name Frequencies")
+        skewness = stats.skew(name_freqs)
+        kurtosis = stats.kurtosis(name_freqs)
+    else:
+        ax = skewness = kurtosis = None
+
+    if skewness == float('nan'):
+        skewness = None
+    if kurtosis == float('nan'):
+        kurtosis = None
+    
+    return name_freqs, ax, skewness, kurtosis

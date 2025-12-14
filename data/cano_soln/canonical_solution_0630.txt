@@ -1,0 +1,7 @@
+    if not os.path.exists(output_dir):
+        os.makedirs(output_dir)
+    file_path = os.path.join(output_dir, filename)
+    df_clean = df.where(pd.notnull(df), None)
+    with open(file_path, 'w') as f:
+        df_clean.to_json(f, orient='records')
+    return file_path

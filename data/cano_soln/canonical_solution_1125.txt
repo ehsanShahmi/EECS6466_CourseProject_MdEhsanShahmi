@@ -1,0 +1,5 @@
+    url = re.search(r'(https?://\S+)', myString).group()
+    headers = {'Authorization': 'Bearer ' + token}
+    data = {'url': url}
+    response = requests.post('https://api.example.com/urls', headers=headers, data=json.dumps(data))
+    return response.json()

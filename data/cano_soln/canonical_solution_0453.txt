@@ -1,0 +1,4 @@
+    while True:
+        s = ''.join(choice(string.ascii_letters) for _ in range(n))
+        if re.match(pattern, s):
+            return s

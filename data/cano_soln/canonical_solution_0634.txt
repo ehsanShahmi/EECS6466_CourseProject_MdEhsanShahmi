@@ -1,0 +1,7 @@
+    # Flattening the list with multiple repetitions
+    flattened_list = np.array(list(itertools.chain(*[input_list for _ in range(repetitions)])))
+    
+    # Calculating the mode
+    mode = stats.mode(flattened_list)
+    
+    return mode

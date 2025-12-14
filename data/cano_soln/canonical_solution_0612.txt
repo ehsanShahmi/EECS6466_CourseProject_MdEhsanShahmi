@@ -1,0 +1,16 @@
+    report_data = []
+    for team in teams:
+        team_goals = goals.get(team, 0)
+        team_penalties = penalties.get(team, 0)
+        penalties_cost = team_penalties * choice(penalties_costs)
+        performance_score = np.max([0, team_goals - team_penalties])
+        report_data.append({
+            'Team': team,
+            'Goals': team_goals,
+            'Penalties': team_penalties,
+            'Penalties Cost': penalties_cost,
+            'Performance Score': performance_score
+        })
+
+    report_df = pd.DataFrame(report_data)
+    return report_df

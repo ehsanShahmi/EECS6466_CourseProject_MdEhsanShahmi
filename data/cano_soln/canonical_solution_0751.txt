@@ -1,0 +1,5 @@
+    import random
+    samples = random.choices(values, weights=weights, k=n_samples)
+    histogram = dict(Counter(samples))
+
+    return histogram

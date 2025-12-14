@@ -1,0 +1,15 @@
+
+    # Type check for x and y
+    if not isinstance(x, np.ndarray):
+        raise TypeError("x must be numpy.ndarray")
+
+    real_part = norm.pdf(x, 0, 1)
+    imag_part = norm.pdf(x, 2, 2)
+    complex_dist = real_part + 1j * imag_part
+
+    plt.plot(x, complex_dist.real, label='Real part')
+    plt.plot(x, complex_dist.imag, label='Imaginary part')
+    plt.legend()
+    plt.grid()
+    plt.show()
+    return complex_dist

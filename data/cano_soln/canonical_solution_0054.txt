@@ -1,0 +1,6 @@
+    sentences = re.split(r"\.\s*", text)
+    sentences = [sentence for sentence in sentences if len(sentence.strip()) != 0]
+    vectorizer = CountVectorizer()
+    dtm = vectorizer.fit_transform(sentences)
+    df = pd.DataFrame(dtm.toarray(), columns=vectorizer.get_feature_names_out())
+    return df

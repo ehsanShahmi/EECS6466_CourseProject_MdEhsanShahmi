@@ -1,0 +1,24 @@
+    try:
+        with open(file_path, "r", encoding="utf-8") as file:
+            reader = csv.reader(file)
+            population = [int(row[0]) for row in reader]
+    except IOError as exc:
+        raise IOError(
+            "Error reading the file. Please check the file path and permissions."
+        ) from exc
+
+    sample = np.random.choice(population, 30, replace=False)
+    mean = np.mean(sample)
+    std_dev = np.std(sample, ddof=1)
+
+    plt.hist(sample, bins="auto", density=True, alpha=0.7, rwidth=0.85)
+    xmin, xmax = plt.xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = stats.norm.pdf(x, mean, std_dev)
+    plt.plot(x, p, "k", linewidth=2)
+    plt.xlabel("Sample Values")
+    plt.ylabel("Frequency")
+    plt.title("Sample Histogram with Normal Distribution Overlay")
+    ax = plt.gca()
+
+    return mean, std_dev, ax

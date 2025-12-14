@@ -1,0 +1,14 @@
+    np.random.seed(seed)
+    sample = np.random.normal(mu, sigma, sample_size)
+    
+    fig, ax = plt.subplots()
+    ax.hist(sample, bins=30, density=True, alpha=0.5, label='Sample Histogram')
+    
+    xmin, xmax = ax.get_xlim()
+    x = np.linspace(xmin, xmax, 100)
+    p = stats.norm.pdf(x, mu, sigma)
+    ax.plot(x, p, 'k', linewidth=2, label='Normal PDF')
+    
+    ax.set_title("Normal Distribution with $\\mu = %0.2f, \\sigma = %0.2f$" % (mu, sigma))
+    ax.legend()    
+    return ax, np.mean(sample), np.std(sample)

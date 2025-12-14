@@ -1,0 +1,15 @@
+    sentences = []
+    for _ in range(n_sentences):
+        sentence_len = random.randint(5, 10)
+        sentence = " ".join(random.choice(WORD_LIST) for _ in range(sentence_len)) + "."
+        sentences.append(sentence)
+
+    # Join sentences and ensure no extra spaces around periods
+    text = " ".join(sentences)
+    # Remove unwanted characters, ensure only letters, spaces, or periods remain
+    text = re.sub(r'[^\w\s.]', '', text).lower()
+    # Normalize spaces ensuring single space between words and no trailing spaces before periods
+    text = re.sub(r'\s+\.', '.', text)
+    text = re.sub(r'\s+', ' ', text)
+
+    return text.strip()

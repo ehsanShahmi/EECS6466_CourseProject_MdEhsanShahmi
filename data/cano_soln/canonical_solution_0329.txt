@@ -1,0 +1,7 @@
+    with open(file_path, 'r') as file:
+        data = json.load(file)
+        text = ' '.join(data.values())
+        matches = re.findall(regex_pattern, text)
+
+    match_dict = {os.path.basename(file_path): matches}
+    return match_dict

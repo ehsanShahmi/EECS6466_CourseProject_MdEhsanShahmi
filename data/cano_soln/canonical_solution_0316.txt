@@ -1,0 +1,5 @@
+
+    distribution = {category: random.randint(*value_range) for category in CATEGORIES}
+    df = pd.DataFrame(list(distribution.items()), columns=['Category', 'Count'])
+
+    return df

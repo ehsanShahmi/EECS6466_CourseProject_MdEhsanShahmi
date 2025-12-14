@@ -1,0 +1,17 @@
+    if not os.path.exists(directory):
+        raise FileNotFoundError(f"The directory '{directory}' does not exist.")
+
+    files = natsort.natsorted(glob.glob(os.path.join(directory, file_pattern)))
+    if not files:
+        raise ValueError(f"No files found matching pattern '{file_pattern}' in directory '{directory}'.")
+
+    data = []
+    for filename in files:
+        with open(filename, 'r') as file:
+            content = file.read()
+        numeric_data = re.findall(regex, content)
+        data.append([os.path.basename(filename), numeric_data])
+
+    df = pd.DataFrame(data, columns=['Filename', 'Numeric Data'])
+
+    return df

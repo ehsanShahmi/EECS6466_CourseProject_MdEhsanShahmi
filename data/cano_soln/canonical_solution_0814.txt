@@ -1,0 +1,13 @@
+    if not os.path.exists(source_dir):
+        raise FileNotFoundError("The source directory does not exist.")
+    if not os.path.exists(target_dir):
+        os.makedirs(target_dir)
+
+    moved_files_count = 0
+
+    for filename in os.listdir(source_dir):
+        if re.match(file_pattern, filename):
+            shutil.move(os.path.join(source_dir, filename), os.path.join(target_dir, filename))
+            moved_files_count += 1
+
+    return moved_files_count

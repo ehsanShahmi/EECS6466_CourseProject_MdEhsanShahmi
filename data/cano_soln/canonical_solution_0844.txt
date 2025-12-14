@@ -1,0 +1,17 @@
+
+    if num_rows < 0 or not isinstance(num_rows, int):
+        raise ValueError('num_rows should be an integer >=0.')
+
+    fake = Faker()
+    fake.seed_instance(random_seed)
+    random.seed(random_seed)
+    with open(file_path, 'w', newline='') as csv_file:
+        writer = csv.writer(csv_file)
+        writer.writerow(['Name', 'Age', 'Address', 'Email'])
+        for _ in range(num_rows):
+            name = fake.name()
+            age = random.randint(20, 60)
+            address = fake.address().replace('\n', ', ')
+            email = fake.email()
+            writer.writerow([name, age, address, email])
+    return file_path

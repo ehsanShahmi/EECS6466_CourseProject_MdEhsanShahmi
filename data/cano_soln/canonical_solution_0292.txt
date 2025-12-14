@@ -1,0 +1,15 @@
+
+    scaler = MinMaxScaler(feature_range=(0, 1))
+    #Scaling the 'age' and 'income' columns
+    df_grouped = df.groupby('id').apply(
+        lambda x: pd.DataFrame(
+            scaler.fit_transform(x[['age', 'income']]), 
+            columns=['age', 'income'], 
+            index=x.index
+        )
+    )
+
+    # Creating a histogram of the 'income' column
+    hist, bins = np.histogram(df_grouped['income'], bins=10)
+
+    return df_grouped, (hist, bins)

@@ -1,0 +1,13 @@
+    max_y_point = max(data, key=itemgetter(1))
+    points = np.array(data)
+    x = points[:,0]
+    y = points[:,1]
+
+    fig, ax = plt.subplots()
+    ax.scatter(x, y, label='Points')
+    ax.scatter(*max_y_point, color='red', label='Max Y Point')
+    ax.set_xlabel('x')
+    ax.set_ylabel('y')
+    ax.set_title('Points with Max Y Point Highlighted')
+    ax.legend()
+    return ax, max_y_point

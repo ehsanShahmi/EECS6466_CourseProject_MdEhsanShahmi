@@ -1,0 +1,7 @@
+    with open(file_path, 'r') as file:
+        reader = csv.reader(file)
+        text = ' '.join(row[0] for row in reader)
+        matches = re.findall(regex_pattern, text)
+
+    counts = Counter(matches)
+    return dict(counts)

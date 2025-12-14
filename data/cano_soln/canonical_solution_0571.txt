@@ -1,0 +1,26 @@
+    
+    if not all(callable(f) for f in f_list):
+        raise ValueError("All elements in f_list must be callable functions.")
+    if not f_list:
+        raise ValueError("f_list should not be empty.")
+    if not isinstance(file_path, str):
+        raise ValueError("file_path must be a string.")
+
+
+    func_info = []
+    for f in f_list:
+        spec = inspect.getfullargspec(f)
+        is_lambda = lambda x: x.__name__ == (lambda: None).__name__
+        func_info.append([
+            f.__name__, 
+            len(spec.args), 
+            spec.defaults, 
+            spec.annotations, 
+            is_lambda(f)
+        ])
+
+    df = pd.DataFrame(func_info, columns=['Function Name', 'Number of Arguments', 'Defaults', 'Annotations', 'Is Lambda'])
+    try:
+        df.to_csv(file_path, index=False)
+    except IOError as e:
+        raise IOError(f"Error writing to file: {e}")

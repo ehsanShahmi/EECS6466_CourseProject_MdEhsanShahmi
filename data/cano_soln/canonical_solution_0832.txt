@@ -1,0 +1,12 @@
+    try:
+        directory = os.path.dirname(filename)
+        if directory and not os.path.exists(directory):
+            os.makedirs(directory)
+
+        # Serialize the object and write it to the file
+        with open(filename, 'wb') as f:
+            pickle.dump(data, f)
+        return True
+    except Exception as e:
+        print(f"An error occurred: {e}")
+        return False

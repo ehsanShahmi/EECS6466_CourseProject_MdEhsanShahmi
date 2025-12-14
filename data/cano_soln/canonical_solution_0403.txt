@@ -1,0 +1,10 @@
+    if not os.path.exists(img_path):
+        raise FileNotFoundError(f"No file found at {img_path}")
+
+    img = Image.open(img_path)
+    img = img.convert("RGB")
+
+    blurred_img = img.filter(ImageFilter.GaussianBlur(blur_radius))
+    grey_img = cv2.cvtColor(np.array(blurred_img), cv2.COLOR_RGB2GRAY)
+
+    return np.array(img), np.array(grey_img)

@@ -1,0 +1,8 @@
+    
+    flattened_list = list(itertools.chain(*[letters for _ in range(len(categories))]))
+    expanded_categories = list(itertools.chain(*[[category] * len(letters) for category in categories]))
+    shuffle(expanded_categories)
+
+    df = pd.DataFrame({'Letter': flattened_list, 'Category': expanded_categories})
+
+    return df

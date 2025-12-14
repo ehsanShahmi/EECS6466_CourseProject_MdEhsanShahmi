@@ -1,0 +1,28 @@
+    
+    if not os.path.exists(file_path):
+        raise FileNotFoundError(f"The file '{file_path}' does not exist.")
+    
+    df = pd.read_csv(file_path)
+    
+    if target_column not in df.columns:
+        raise ValueError(f"The specified target column '{target_column}' does not exist in the CSV file.")
+    
+    # Drop rows with any NaN values
+    df_cleaned = df.dropna()
+
+    X = df_cleaned.drop(target_column, axis=1)
+    y = df_cleaned[target_column]
+    
+    # Option to scale features if needed
+    # scaler = StandardScaler()
+    # X_scaled = scaler.fit_transform(X)
+    
+    clf = RandomForestClassifier(random_state=seed)
+    clf.fit(X, y)
+    importances = clf.feature_importances_
+    
+    fig, ax = plt.subplots()
+    sns.barplot(x=X.columns, y=importances, ax=ax)
+    ax.set_title('Feature Importances')
+    
+    return ax, importances

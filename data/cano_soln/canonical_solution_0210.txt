@@ -1,0 +1,17 @@
+    letter_counts = collections.Counter([item[0] for item in data])
+    max_value_letter = max(data, key=itemgetter(1))[0]
+
+    letters, counts = zip(*letter_counts.items())
+    # Initialize a fresh plot
+    plt.figure()
+    ax = plt.bar(letters, counts, label='Letter Counts')
+
+    if max_value_letter in letter_counts:
+        plt.bar(max_value_letter, letter_counts[max_value_letter], color='red', label='Max Value Letter')
+
+    plt.xlabel('Letter')
+    plt.ylabel('Count')
+    plt.title('Letter Counts with Max Value Letter Highlighted')
+    plt.legend()
+
+    return plt.gca()

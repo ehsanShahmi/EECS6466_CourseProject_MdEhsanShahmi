@@ -1,0 +1,14 @@
+    np.random.seed(seed)
+    random.seed(seed)
+    scaled_data = []
+    scaler = MinMaxScaler(feature_range=(0, 1))
+    for list_ in list_of_lists:
+        if not list_:
+            list_ = [random.randint(0, 100) for _ in range(5)]
+        # Reshape the data to fit the scaler
+        reshaped_data = np.array(list_).reshape(-1, 1)
+        scaled_list = scaler.fit_transform(reshaped_data)
+        # Flatten the list and append to the result
+        scaled_data.append(scaled_list.flatten().tolist())
+    
+    return scaled_data

@@ -1,0 +1,6 @@
+    np.random.seed(seed) # Ensure reproducibility for consistent outputs across different runs
+    matrix = np.random.rand(rows, columns)
+    scaler = MinMaxScaler()
+    scaled_matrix = scaler.fit_transform(matrix)
+
+    return scaled_matrix

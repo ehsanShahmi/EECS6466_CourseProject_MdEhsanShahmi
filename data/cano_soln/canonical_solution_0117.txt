@@ -1,0 +1,20 @@
+    if num_of_students <= 0:
+        raise ValueError("num_of_students must be positive.")
+
+    set_seed(seed)
+    np.random.seed(seed)
+
+    name_list = name_list or ['John', 'Mike', 'Sara', 'Emma', 'Nick']
+    gender_list = gender_list or ['Male', 'Female']
+
+    data = []
+    for _ in range(num_of_students):
+        name = choice(name_list)
+        age = np.random.randint(age_range[0], age_range[1] + 1)
+        gender = choice(gender_list)
+        score = np.random.randint(score_range[0], score_range[1] + 1)
+        data.append([name, age, gender, score])
+
+    columns = ['Name', 'Age', 'Gender', 'Score']
+    df = pd.DataFrame(data, columns=columns)
+    return df

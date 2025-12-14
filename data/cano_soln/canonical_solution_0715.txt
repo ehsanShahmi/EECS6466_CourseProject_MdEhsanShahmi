@@ -1,0 +1,4 @@
+    subprocess.run(['pyenv', 'global', python_version], check=True)
+    sys.path.append(path_to_append)
+
+    return python_version

@@ -1,0 +1,29 @@
+    # Constants
+    TIMEZONES = [
+        "UTC",
+        "America/Los_Angeles",
+        "Europe/Paris",
+        "Asia/Kolkata",
+        "Australia/Sydney",
+    ]
+    COLORS = ["b", "g", "r", "c", "m", "y", "k"]
+
+    start_date = datetime.strptime(start_time, "%Y-%m-%d")
+    end_date = datetime.strptime(end_time, "%Y-%m-%d")
+    current_tz = pytz.timezone("UTC")
+    dates = np.arange(start_date, end_date, timedelta(days=1)).astype(datetime)
+    differences = []
+    for tz in TIMEZONES:
+        other_tz = pytz.timezone(tz)
+        difference = [
+            (other_tz.localize(dt) - current_tz.localize(dt)).total_seconds() / 3600
+            for dt in dates
+        ]
+        differences.append(difference)
+    fig, ax = plt.subplots()
+    for i, difference in enumerate(differences):
+        ax.plot(dates, difference, color=COLORS[i % len(COLORS)], label=TIMEZONES[i])
+    ax.set_xlabel("Date")
+    ax.set_ylabel("Time difference (hours)")
+    ax.legend()
+    return ax

@@ -1,0 +1,11 @@
+    from_tz = pytz.timezone(from_tz)
+    to_tz = pytz.timezone(to_tz)
+    given_date = parse(date_str).replace(tzinfo=from_tz)
+    converted_date = given_date.astimezone(to_tz)
+
+    solar_cycle_year = SOLAR_CYCLE_YEARS[np.argmin(np.abs(SOLAR_CYCLE_YEARS - converted_date.year))]
+    years_since_solar_cycle_year = abs(converted_date.year - solar_cycle_year)
+
+    solar_activity = math.cos(math.pi * years_since_solar_cycle_year / 11)
+
+    return solar_activity

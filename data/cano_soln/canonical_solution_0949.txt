@@ -1,0 +1,6 @@
+    if seed is not None:
+        np.random.seed(seed)
+    matrix = np.random.rand(rows, columns)
+    df = pd.DataFrame(matrix)
+    
+    return df

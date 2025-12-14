@@ -1,0 +1,6 @@
+    letters = list(itertools.chain.from_iterable(word_dict.keys()))
+    count_dict = dict(Counter(letters))
+    
+    sorted_dict = dict(sorted(count_dict.items(), key=itemgetter(1), reverse=True))
+    
+    return sorted_dict

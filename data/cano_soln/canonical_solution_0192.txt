@@ -1,0 +1,16 @@
+
+    names = re.findall('(.*?)(?:\\[.*?\\]|$)', text)
+    # Remove trailing spaces from each name and filter out empty strings
+    names = [name.strip() for name in names if name != ""]
+    
+    message = 'Subject: Extracted Names\n\n' + '\n'.join(names)
+    if smtp:
+        server = smtp(smtp_server, smtp_port)
+    else:
+        server = smtplib.SMTP(smtp_server, smtp_port)
+        
+    server.starttls()
+    server.login(email_address, email_password)
+    server.sendmail(email_address, recepient_address, message)
+    server.quit()
+    return names

@@ -1,0 +1,8 @@
+
+    if not commands:  # Handle case where commands list is empty
+        return []
+
+    with Pool(processes=len(commands)) as pool:
+        outputs = pool.map(execute_command, commands)
+
+    return outputs

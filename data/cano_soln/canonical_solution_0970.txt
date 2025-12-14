@@ -1,0 +1,19 @@
+    if np.any(data < 0) or np.isnan(data).any():
+        raise ValueError("Input array contains negative numbers or NaNs.")
+
+    if not np.issubdtype(data.dtype, np.number):
+        raise TypeError("Input array contains non-numeric values.")
+
+    data_sorted = np.sort(data)
+    cumulative_prob = (
+        np.cumsum(data_sorted) / np.sum(data_sorted)
+        if np.sum(data_sorted) != 0
+        else np.zeros_like(data_sorted)
+    )
+    fig, ax = plt.subplots()
+    ax.plot(cumulative_prob, marker="o", linestyle="-")
+    ax.set_xlabel("Index")
+    ax.set_ylabel("Cumulative Probability")
+    ax.set_title("Cumulative Probability Plot")
+
+    return ax

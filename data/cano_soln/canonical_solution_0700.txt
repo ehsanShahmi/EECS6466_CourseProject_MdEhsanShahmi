@@ -1,0 +1,7 @@
+    df = pd.DataFrame(data, columns=cols)
+    
+    df_np = np.array(df)
+    df = pd.DataFrame(df_np, columns=cols)
+    
+    correlation_matrix = df.corr()
+    return correlation_matrix

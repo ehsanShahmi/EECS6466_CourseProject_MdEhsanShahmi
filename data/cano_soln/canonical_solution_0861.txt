@@ -1,0 +1,9 @@
+    seed(42)  # Set the seed for reproducibility
+    baskets = []
+    for list_ in list_of_lists:
+        basket = Counter()
+        for _ in list_:
+            basket[choice(POSSIBLE_ITEMS)] += 1
+        baskets.append(basket)
+
+    return baskets

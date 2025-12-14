@@ -1,0 +1,19 @@
+    # Extract the 'from_user' values
+    from_user_values = [d['from_user'] for d in result if 'from_user' in d]
+
+    # Calculate the square roots
+    square_roots = np.round(np.sqrt(from_user_values), 2)
+
+    # Plot the square root function
+    plt.figure()
+    plt.plot(from_user_values, square_roots)
+    plt.title(PLOT_TITLE)
+    plt.xlabel(X_LABEL)
+    plt.ylabel(Y_LABEL)
+
+    # Annotate the plot with the current date and time
+    now = datetime.now()
+    now_str = now.strftime(TIME_FORMAT)
+    plt.annotate(now_str, (0.05, 0.95), xycoords='axes fraction')
+    ax = plt.gca()
+    return square_roots, ax

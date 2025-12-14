@@ -1,0 +1,11 @@
+    if n_walks < 0 or n_steps < 0:
+        raise ValueError("Walks and steps cannot be negative.")
+    np.random.seed(seed)
+    COLORS = ["b", "g", "r", "c", "m", "y", "k"]
+    color_cycle = itertools.cycle(COLORS)
+    fig, ax = plt.subplots()
+    for _ in range(n_walks):
+        walk = np.random.choice([-1, 1], size=n_steps)
+        walk = np.cumsum(walk)
+        ax.plot(walk, next(color_cycle))
+    return ax

@@ -1,0 +1,11 @@
+    pattern = r'\[.*?\]'
+    text = re.sub(pattern, '', example_str)
+    if not text.strip():
+        return {}
+
+    tfidf_vectorizer = TfidfVectorizer()
+    tfidf_matrix = tfidf_vectorizer.fit_transform([text])
+    feature_names = tfidf_vectorizer.get_feature_names_out()
+    tfidf_scores = dict(zip(feature_names, np.squeeze(tfidf_matrix.toarray())))
+
+    return tfidf_scores
