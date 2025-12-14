@@ -1,0 +1,13 @@
+{
+    "tests_by_mangled_function_name": {
+        "calc.x_add": [
+            "tests/test_calc.py::TestCalculator::test_add_positive_numbers",
+            "tests/test_calc.py::TestCalculator::test_add_negative_numbers"
+        ]
+    },
+    "duration_by_test": {
+        "tests/test_calc.py::TestCalculator::test_add_negative_numbers": 0.00044776499998988584,
+        "tests/test_calc.py::TestCalculator::test_add_positive_numbers": 0.0003312270001742945
+    },
+    "stats_time": 0.154281766
+}
