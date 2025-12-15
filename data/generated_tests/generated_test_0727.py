@@ -1,0 +1,65 @@
+import re
+from sklearn.feature_extraction.text import CountVectorizer
+import numpy as np
+import unittest
+
+# Constants
+SENTENCES = ['This is a sentence', 'Another sentence here', 'More sentences']
+
+def task_func(s: str) -> np.ndarray:
+    """
+    Vectorize a string using the Bag-of-Words model. The string is split into words and each word is treated as an attribute. The value of each attribute is the number of occurrences of the word in the string. The function also uses some predefined sentences (SENTENCES constant) for vectorization.
+    
+    Parameters:
+    - s (str): The string to vectorize.
+
+    Returns:
+    - np.ndarray: A numpy array with the vectorized string.
+    
+    Requirements:
+    - re
+    - sklearn.feature_extraction.text.CountVectorizer
+    - numpy
+    
+    Example:
+    >>> s = 'This is a test string.'
+    >>> vec = task_func(s)
+    >>> print(vec)
+    [0 0 1 0 0 0 1 1 1]
+    """
+    
+    s = re.sub(r'\W+', ' ', s)
+    vectorizer = CountVectorizer()
+    X = vectorizer.fit_transform([s] + SENTENCES)
+    return X.toarray()[0]
+
+class TestTaskFunc(unittest.TestCase):
+    
+    def test_empty_string(self):
+        result = task_func("")
+        expected_length = len(SENTENCES)
+        self.assertEqual(len(result), expected_length)
+        self.assertTrue(all(value == 0 for value in result))
+
+    def test_single_word(self):
+        result = task_func("Another")
+        expected = [1, 0, 0, 0, 0, 0, 0, 0, 0]  # "Another" in the first position
+        self.assertTrue(np.array_equal(result, expected))
+
+    def test_multiple_words(self):
+        result = task_func("This is another test")
+        expected = [1, 0, 0, 1, 0, 0, 0, 0, 1]  # "This", "is", "another", "test" 
+        self.assertTrue(np.array_equal(result, expected))
+
+    def test_special_characters(self):
+        result = task_func("This is amazing!!!")
+        expected = [1, 0, 0, 0, 0, 0, 0, 0, 0]  # Normalized to just "This", "is"
+        self.assertTrue(np.array_equal(result, expected))
+
+    def test_case_insensitivity(self):
+        result = task_func("this is a test")
+        expected = [1, 0, 0, 0, 0, 0, 1, 0, 0]  # "this" is treated same as "This"
+        self.assertTrue(np.array_equal(result, expected))
+
+if __name__ == '__main__':
+    unittest.main()
